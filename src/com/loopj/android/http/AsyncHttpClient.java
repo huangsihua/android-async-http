@@ -64,6 +64,7 @@ import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpProtocolParams;
 import org.apache.http.protocol.BasicHttpContext;
+import org.apache.http.protocol.HTTP;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.protocol.SyncBasicHttpContext;
 
@@ -387,7 +388,14 @@ public class AsyncHttpClient {
      * @param responseHandler the response handler instance that should handle the response.
      */
     public void post(Context context, String url, RequestParams params, AsyncHttpResponseHandler responseHandler) {
-        post(context, url, paramsToEntity(params), null, responseHandler);
+        HttpEntity httpEntity = paramsToEntity(params);
+        String content_type = httpEntity.getContentType().getValue();
+
+        StringBuilder sb = new StringBuilder(content_type);
+        if(!sb.toString().contains(HTTP.CHARSET_PARAM)){
+            sb.append(HTTP.CHARSET_PARAM).append(HTTP.UTF_8);
+        }
+        post(context, url, httpEntity, sb.toString(), responseHandler);
     }
 
     /**

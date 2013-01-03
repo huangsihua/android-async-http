@@ -8,3 +8,12 @@ bin/
 gen/
 _layouts
 .DS_Store
+
+# Maven
+target/
+
+# Intellij
+*.iml
+*.ipr
+*.iws
+.idea/
