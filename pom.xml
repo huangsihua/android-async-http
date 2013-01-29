@@ -6,6 +6,7 @@
         <groupId>com.gezbox.android</groupId>
         <artifactId>gezbox-parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
     <groupId>com.loopj.android.http</groupId>
     <artifactId>android-async-http</artifactId>
